@@ -20,6 +20,7 @@ from pharmpy.internals.math import (
     flattened_to_symmetric,
     is_posdef,
     is_positive_semidefinite,
+    is_symmetric_matrix_sdp,
     nearest_positive_definite,
     nearest_positive_semidefinite,
     round_and_keep_sum,
@@ -140,12 +141,20 @@ def test_is_posdef():
     assert not is_posdef(B)
 
 
-def test_nearest_posdef():
+def test_is_sdp():
     for _ in range(5):
         for j in range(2, 20):
             A = np.random.randn(j, j)
+            assert is_symmetric_matrix_sdp(A.T @ A)
+
+def test_nearest_sdp():
+    for _ in range(5):
+        for j in range(2, 20):
+            _A = np.random.randn(j, j)
+            A = np.tril(_A) + np.tril(_A, -1).T  # NOTE: We only work with symmetric matrices.
             B = nearest_positive_semidefinite(A)
-            assert is_positive_semidefinite(B)
+            assert (B == B.T).all().all()
+            assert is_symmetric_matrix_sdp(B)
 
     A = np.array(
         [
