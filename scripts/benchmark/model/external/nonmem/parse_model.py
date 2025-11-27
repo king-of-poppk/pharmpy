@@ -28,7 +28,7 @@ class ModelfitResults:
     standard_errors: Optional[pd.Series]
     relative_standard_errors: Optional[pd.Series]
     minimization_successful: Optional[bool]
-    #covariance_matrix: Optional[pd.DataFrame]  # NOTE: To remove this, we need a way to infer $COV status without fetching the matrix.
+    covariance_status: Optional[bool]
     condition_number: Optional[float]
 
 def parse_columns_required(di: DataInfo):
@@ -154,7 +154,7 @@ def process(path: Path, convert: bool, ofv: bool, results: bool):
             standard_errors = lazy_results.standard_errors if results else None,
             relative_standard_errors = lazy_results.relative_standard_errors if results else None,
             minimization_successful = lazy_results.minimization_successful if results else None,
-            #covariance_matrix = lazy_results.covariance_matrix if results else None,
+            covariance_status = lazy_results.covstep_successful if results else None,
             condition_number=lazy_results.condition_number if results else None,
         )
 
