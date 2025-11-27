@@ -24,11 +24,11 @@ from pharmpy.tools.external.nonmem.results import parse_modelfit_results
 class ModelfitResults:
     ofv: Optional[float]
     parameter_estimates: Optional[pd.Series]
-    individual_estimates: Optional[pd.DataFrame]
+    #individual_estimates: Optional[pd.DataFrame] # NOTE: To remove this, we need a way to extract shrinkage without computing it.
     standard_errors: Optional[pd.Series]
     relative_standard_errors: Optional[pd.Series]
     minimization_successful: Optional[bool]
-    covariance_matrix: Optional[pd.DataFrame]
+    #covariance_matrix: Optional[pd.DataFrame]  # NOTE: To remove this, we need a way to infer $COV status without fetching the matrix.
     condition_number: Optional[float]
 
 def parse_columns_required(di: DataInfo):
@@ -150,11 +150,11 @@ def process(path: Path, convert: bool, ofv: bool, results: bool):
         _results = None if lazy_results is None else ModelfitResults(
             ofv = lazy_results.ofv if ofv else None,
             parameter_estimates = lazy_results.parameter_estimates if results else None,
-            individual_estimates = lazy_results.individual_estimates if results else None,
+            #individual_estimates = lazy_results.individual_estimates if results else None,
             standard_errors = lazy_results.standard_errors if results else None,
             relative_standard_errors = lazy_results.relative_standard_errors if results else None,
             minimization_successful = lazy_results.minimization_successful if results else None,
-            covariance_matrix = lazy_results.covariance_matrix if results else None,
+            #covariance_matrix = lazy_results.covariance_matrix if results else None,
             condition_number=lazy_results.condition_number if results else None,
         )
 
