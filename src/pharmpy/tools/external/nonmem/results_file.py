@@ -371,9 +371,15 @@ class NONMEMResultsFile:
 
         result = replace(
             result,
-            eta_shrinkage=NONMEMResultsFile.parse_shrinkage(NONMEMResultsFile.filter_shrinkage(eta_shrinkage.match, rows)),
-            ebv_shrinkage=NONMEMResultsFile.parse_shrinkage(NONMEMResultsFile.filter_shrinkage(ebv_shrinkage.match, rows)),
-            eps_shrinkage=NONMEMResultsFile.parse_shrinkage(NONMEMResultsFile.filter_shrinkage(eps_shrinkage.match, rows)),
+            eta_shrinkage=NONMEMResultsFile.parse_shrinkage(
+                NONMEMResultsFile.filter_shrinkage(eta_shrinkage.match, rows)
+            ),
+            ebv_shrinkage=NONMEMResultsFile.parse_shrinkage(
+                NONMEMResultsFile.filter_shrinkage(ebv_shrinkage.match, rows)
+            ),
+            eps_shrinkage=NONMEMResultsFile.parse_shrinkage(
+                NONMEMResultsFile.filter_shrinkage(eps_shrinkage.match, rows)
+            ),
         )
         return result
 
@@ -404,10 +410,6 @@ class NONMEMResultsFile:
 
             yield from map(str.encode, map(str.rstrip, chunks))
             yield b'\n'
-            
-
-        
-        
 
     @staticmethod
     def parse_shrinkage(chunks: Iterable[bytes]):

@@ -12,6 +12,7 @@ from pharmpy.workflows.log import Log
 
 anan = pytest.approx(nan, nan_ok=True)
 
+
 def _assert_estimation_status(_actual: rf.TermInfo, _expected: rf.TermInfo):
     expected = asdict(_expected)
     actual = asdict(_actual)
@@ -25,6 +26,7 @@ def _assert_estimation_status(_actual: rf.TermInfo, _expected: rf.TermInfo):
             assert actual[key] is nan
         else:
             assert actual[key] == expected[key]
+
 
 def test_supported_version():
     assert rf.NONMEMResultsFile.supported_version(None) is False
@@ -45,17 +47,17 @@ def test_data_io(pheno_lst):
             'phenocorr.lst',
             1,
             rf.TermInfo(
-                ebv_shrinkage = None,
-                eps_shrinkage = None,
-                minimization_successful = True,
-                eta_shrinkage = None,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                significant_digits = 4.9,
-                function_evaluations = 98,
-                warning = False,
-                ofv_with_constant = None,
+                ebv_shrinkage=None,
+                eps_shrinkage=None,
+                minimization_successful=True,
+                eta_shrinkage=None,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                significant_digits=4.9,
+                function_evaluations=98,
+                warning=False,
+                ofv_with_constant=None,
             ),
             True,
         ),
@@ -63,17 +65,17 @@ def test_data_io(pheno_lst):
             'hessian_error.lst',
             1,
             rf.TermInfo(
-                ebv_shrinkage = None,
-                eps_shrinkage = None,
-                minimization_successful = False,
-                eta_shrinkage = None,
-                estimate_near_boundary = None,
-                rounding_errors = None,
-                maxevals_exceeded = None,
-                significant_digits = nan,
-                function_evaluations = nan,
-                warning = None,
-                ofv_with_constant = None,
+                ebv_shrinkage=None,
+                eps_shrinkage=None,
+                minimization_successful=False,
+                eta_shrinkage=None,
+                estimate_near_boundary=None,
+                rounding_errors=None,
+                maxevals_exceeded=None,
+                significant_digits=nan,
+                function_evaluations=nan,
+                warning=None,
+                ofv_with_constant=None,
             ),
             False,
         ),
@@ -81,28 +83,56 @@ def test_data_io(pheno_lst):
             'large_s_matrix_cov_fail.lst',
             1,
             rf.TermInfo(
-                minimization_successful = True,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                significant_digits = 3.1,
-                function_evaluations = 62,
-                warning = True,
-                ofv_with_constant = None,
-                ebv_shrinkage = pd.DataFrame(
+                minimization_successful=True,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                significant_digits=3.1,
+                function_evaluations=62,
+                warning=True,
+                ofv_with_constant=None,
+                ebv_shrinkage=pd.DataFrame(
                     data={
-                        "EBVshrink(%):":  [3.6501E+01,3.6538E+01,5.3119E+01,3.3266E+01,4.0104E+01,3.7548E+01,2.0563E+01,2.2176E+01,1.6328E+01,1.5847E+01,3.3517E+01,3.3526E+01,4.9502E+01,4.9855E+01]
+                        "EBVshrink(%):": [
+                            3.6501e01,
+                            3.6538e01,
+                            5.3119e01,
+                            3.3266e01,
+                            4.0104e01,
+                            3.7548e01,
+                            2.0563e01,
+                            2.2176e01,
+                            1.6328e01,
+                            1.5847e01,
+                            3.3517e01,
+                            3.3526e01,
+                            4.9502e01,
+                            4.9855e01,
+                        ]
                     },
                 ),
-                eps_shrinkage = pd.DataFrame(
-                    data={
-                        "EPSshrink(%):":   [2.3471E+01]
-                    },
+                eps_shrinkage=pd.DataFrame(
+                    data={"EPSshrink(%):": [2.3471e01]},
                 ),
-                eta_shrinkage = pd.DataFrame(
+                eta_shrinkage=pd.DataFrame(
                     data={
-                        "ETAshrink(%):":  [3.9737E+01,5.5124E+01,4.3564E+01,3.3676E+01,3.0325E+01,3.4879E+01,3.8156E+01,2.1724E+01,1.6271E+01,2.9704E+01,4.4234E+01,4.8502E+01,5.4318E+01,4.7864E+01]
-                  },
+                        "ETAshrink(%):": [
+                            3.9737e01,
+                            5.5124e01,
+                            4.3564e01,
+                            3.3676e01,
+                            3.0325e01,
+                            3.4879e01,
+                            3.8156e01,
+                            2.1724e01,
+                            1.6271e01,
+                            2.9704e01,
+                            4.4234e01,
+                            4.8502e01,
+                            5.4318e01,
+                            4.7864e01,
+                        ]
+                    },
                 ),
             ),
             False,
@@ -111,17 +141,17 @@ def test_data_io(pheno_lst):
             'nm710_fail_negV.lst',
             1,
             rf.TermInfo(
-                ebv_shrinkage = None,
-                eps_shrinkage = None,
-                minimization_successful = None,
-                eta_shrinkage = None,
-                estimate_near_boundary = None,
-                rounding_errors = None,
-                maxevals_exceeded = None,
-                significant_digits = nan,
-                function_evaluations = nan,
-                warning = None,
-                ofv_with_constant = None,
+                ebv_shrinkage=None,
+                eps_shrinkage=None,
+                minimization_successful=None,
+                eta_shrinkage=None,
+                estimate_near_boundary=None,
+                rounding_errors=None,
+                maxevals_exceeded=None,
+                significant_digits=nan,
+                function_evaluations=nan,
+                warning=None,
+                ofv_with_constant=None,
             ),
             None,
         ),
@@ -129,27 +159,55 @@ def test_data_io(pheno_lst):
             'sparse_matrix_with_msfi.lst',
             1,
             rf.TermInfo(
-                minimization_successful = True,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                significant_digits = 3.1,
-                function_evaluations = 112,
-                warning = True,
-                ofv_with_constant = None,
-                ebv_shrinkage = pd.DataFrame(
+                minimization_successful=True,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                significant_digits=3.1,
+                function_evaluations=112,
+                warning=True,
+                ofv_with_constant=None,
+                ebv_shrinkage=pd.DataFrame(
                     data={
-                        "EBVshrink(%):":  [4.5964E+01,3.4348E+01,5.2009E+01,3.3063E+01,3.3978E+01,3.7211E+01,2.1345E+01,2.3314E+01,1.5965E+01,1.6086E+01,3.2729E+01,3.3373E+01,5.1050E+01,4.9976E+01]
+                        "EBVshrink(%):": [
+                            4.5964e01,
+                            3.4348e01,
+                            5.2009e01,
+                            3.3063e01,
+                            3.3978e01,
+                            3.7211e01,
+                            2.1345e01,
+                            2.3314e01,
+                            1.5965e01,
+                            1.6086e01,
+                            3.2729e01,
+                            3.3373e01,
+                            5.1050e01,
+                            4.9976e01,
+                        ]
                     },
                 ),
-                eps_shrinkage = pd.DataFrame(
-                    data={
-                        "EPSshrink(%):":   [3.2079E+01]
-                    },
+                eps_shrinkage=pd.DataFrame(
+                    data={"EPSshrink(%):": [3.2079e01]},
                 ),
-                eta_shrinkage = pd.DataFrame(
+                eta_shrinkage=pd.DataFrame(
                     data={
-                        "ETAshrink(%):":  [4.7663E+01,5.2882E+01,4.3524E+01,3.6822E+01,3.8634E+01,3.5256E+01,4.0755E+01,2.8192E+01,2.0729E+01,2.9972E+01,4.9818E+01,4.8307E+01,6.6686E+01,4.9792E+01]
+                        "ETAshrink(%):": [
+                            4.7663e01,
+                            5.2882e01,
+                            4.3524e01,
+                            3.6822e01,
+                            3.8634e01,
+                            3.5256e01,
+                            4.0755e01,
+                            2.8192e01,
+                            2.0729e01,
+                            2.9972e01,
+                            4.9818e01,
+                            4.8307e01,
+                            6.6686e01,
+                            4.9792e01,
+                        ]
                     },
                 ),
             ),
@@ -159,21 +217,17 @@ def test_data_io(pheno_lst):
             'warfarin_ddmore.lst',
             1,
             rf.TermInfo(
-                minimization_successful = True,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                warning = False,
-                ofv_with_constant = None,
-                eps_shrinkage = pd.DataFrame(
-                    data={
-                        "EPSshrink(%):":   [7.6245E+00]
-                    },
+                minimization_successful=True,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                warning=False,
+                ofv_with_constant=None,
+                eps_shrinkage=pd.DataFrame(
+                    data={"EPSshrink(%):": [7.6245e00]},
                 ),
-                eta_shrinkage = pd.DataFrame(
-                    data={
-                        "ETAshrink(%):":  [1.3927E+00, 1.3092E+01, 4.9181E+01, 5.3072E+01]
-                    },
+                eta_shrinkage=pd.DataFrame(
+                    data={"ETAshrink(%):": [1.3927e00, 1.3092e01, 4.9181e01, 5.3072e01]},
                 ),
             ),
             False,
@@ -182,27 +236,21 @@ def test_data_io(pheno_lst):
             'mox_fail_nonp.lst',
             1,
             rf.TermInfo(
-                minimization_successful = False,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                function_evaluations = 153,
-                warning = False,
-                ofv_with_constant = None,
-                ebv_shrinkage = pd.DataFrame(
-                    data={
-                        "EBVshrink(%):":  [3.7232E+00,2.5777E+01,1.4788E+01,2.4381E+01,1.6695E+01]
-                    },
+                minimization_successful=False,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                function_evaluations=153,
+                warning=False,
+                ofv_with_constant=None,
+                ebv_shrinkage=pd.DataFrame(
+                    data={"EBVshrink(%):": [3.7232e00, 2.5777e01, 1.4788e01, 2.4381e01, 1.6695e01]},
                 ),
-                eps_shrinkage = pd.DataFrame(
-                    data={
-                        "EPSshrink(%):":   [2.5697E+01]
-                    },
+                eps_shrinkage=pd.DataFrame(
+                    data={"EPSshrink(%):": [2.5697e01]},
                 ),
-                eta_shrinkage = pd.DataFrame(
-                    data={
-                        "ETAshrink(%):":  [3.1277E+01,5.2053E+01,7.5691E+00,7.8837E+01,8.2298E+01]
-                    },
+                eta_shrinkage=pd.DataFrame(
+                    data={"ETAshrink(%):": [3.1277e01, 5.2053e01, 7.5691e00, 7.8837e01, 8.2298e01]},
                 ),
             ),
             False,
@@ -211,28 +259,22 @@ def test_data_io(pheno_lst):
             'mox_nocov_nonp.lst',
             1,
             rf.TermInfo(
-                minimization_successful = False,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                significant_digits = nan,
-                function_evaluations = 153,
-                warning = False,
-                ofv_with_constant = None,
-                ebv_shrinkage = pd.DataFrame(
-                    data={
-                        "EBVshrink(%):":  [3.7232E+00, 2.5777E+01, 1.4788E+01, 2.4381E+01, 1.6695E+01]
-                    },
+                minimization_successful=False,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                significant_digits=nan,
+                function_evaluations=153,
+                warning=False,
+                ofv_with_constant=None,
+                ebv_shrinkage=pd.DataFrame(
+                    data={"EBVshrink(%):": [3.7232e00, 2.5777e01, 1.4788e01, 2.4381e01, 1.6695e01]},
                 ),
-                eps_shrinkage = pd.DataFrame(
-                    data={
-                        "EPSshrink(%):":   [2.5697E+01]
-                    },
+                eps_shrinkage=pd.DataFrame(
+                    data={"EPSshrink(%):": [2.5697e01]},
                 ),
-                eta_shrinkage = pd.DataFrame(
-                    data={
-                        "ETAshrink(%):":  [3.1277E+01, 5.2053E+01, 7.5691E+00, 7.8837E+01, 8.2298E+01]
-                    },
+                eta_shrinkage=pd.DataFrame(
+                    data={"ETAshrink(%):": [3.1277e01, 5.2053e01, 7.5691e00, 7.8837e01, 8.2298e01]},
                 ),
             ),
             False,
@@ -241,28 +283,22 @@ def test_data_io(pheno_lst):
             'pheno_nonp.lst',
             1,
             rf.TermInfo(
-                minimization_successful = True,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                significant_digits = 3.6,
-                function_evaluations = 107,
-                warning = False,
-                ofv_with_constant = None,
-                ebv_shrinkage = pd.DataFrame(
-                    data={
-                        "EBVshrink(%):":  [3.8428E+01, 4.4592E+00]
-                    },
+                minimization_successful=True,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                significant_digits=3.6,
+                function_evaluations=107,
+                warning=False,
+                ofv_with_constant=None,
+                ebv_shrinkage=pd.DataFrame(
+                    data={"EBVshrink(%):": [3.8428e01, 4.4592e00]},
                 ),
-                eps_shrinkage = pd.DataFrame(
-                    data={
-                        "EPSshrink(%):":   [2.7971E+01]
-                    },
+                eps_shrinkage=pd.DataFrame(
+                    data={"EPSshrink(%):": [2.7971e01]},
                 ),
-                eta_shrinkage = pd.DataFrame(
-                    data={
-                        "ETAshrink(%):":  [3.8721E+01, 4.6492E+00]
-                    },
+                eta_shrinkage=pd.DataFrame(
+                    data={"ETAshrink(%):": [3.8721e01, 4.6492e00]},
                 ),
             ),
             True,
@@ -271,17 +307,17 @@ def test_data_io(pheno_lst):
             'theo.lst',
             1,
             rf.TermInfo(
-                ebv_shrinkage = None,
-                eps_shrinkage = None,
-                minimization_successful = True,
-                eta_shrinkage = None,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                significant_digits = 4.2,
-                function_evaluations = 208,
-                warning = False,
-                ofv_with_constant = None,
+                ebv_shrinkage=None,
+                eps_shrinkage=None,
+                minimization_successful=True,
+                eta_shrinkage=None,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                significant_digits=4.2,
+                function_evaluations=208,
+                warning=False,
+                ofv_with_constant=None,
             ),
             True,
         ),
@@ -289,28 +325,22 @@ def test_data_io(pheno_lst):
             'theo_nonp.lst',
             1,
             rf.TermInfo(
-                minimization_successful = False,
-                estimate_near_boundary = True,
-                rounding_errors = True,
-                maxevals_exceeded = False,
-                significant_digits = nan,
-                function_evaluations = 735,
-                warning = False,
-                ofv_with_constant = None,
-                ebv_shrinkage = pd.DataFrame(
-                    data={
-                        "EBVshrink(%):":  [9.6560E+01, 1.6545E+01, 1.6532E+01, 1.0000E+02]
-                    },
+                minimization_successful=False,
+                estimate_near_boundary=True,
+                rounding_errors=True,
+                maxevals_exceeded=False,
+                significant_digits=nan,
+                function_evaluations=735,
+                warning=False,
+                ofv_with_constant=None,
+                ebv_shrinkage=pd.DataFrame(
+                    data={"EBVshrink(%):": [9.6560e01, 1.6545e01, 1.6532e01, 1.0000e02]},
                 ),
-                eps_shrinkage = pd.DataFrame(
-                    data={
-                        "EPSshrink(%):":   [3.2692E+00]
-                    },
+                eps_shrinkage=pd.DataFrame(
+                    data={"EPSshrink(%):": [3.2692e00]},
                 ),
-                eta_shrinkage = pd.DataFrame(
-                    data={
-                        "ETAshrink(%):":  [9.6393E+01, 1.2506E+01, 1.2492E+01, 1.0000E+02]
-                    },
+                eta_shrinkage=pd.DataFrame(
+                    data={"ETAshrink(%):": [9.6393e01, 1.2506e01, 1.2492e01, 1.0000e02]},
                 ),
             ),
             False,
@@ -319,17 +349,17 @@ def test_data_io(pheno_lst):
             'theo_withcov.lst',
             1,
             rf.TermInfo(
-                ebv_shrinkage = None,
-                eps_shrinkage = None,
-                minimization_successful = True,
-                eta_shrinkage = None,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                significant_digits = 4.2,
-                function_evaluations = 208,
-                warning = False,
-                ofv_with_constant = None,
+                ebv_shrinkage=None,
+                eps_shrinkage=None,
+                minimization_successful=True,
+                eta_shrinkage=None,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                significant_digits=4.2,
+                function_evaluations=208,
+                warning=False,
+                ofv_with_constant=None,
             ),
             True,
         ),
@@ -337,28 +367,22 @@ def test_data_io(pheno_lst):
             'UseCase7.lst',
             1,
             rf.TermInfo(
-                minimization_successful = True,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                significant_digits = nan,
-                function_evaluations = nan,
-                warning = False,
-                ofv_with_constant = None,
-                ebv_shrinkage = pd.DataFrame(
-                    data={
-                        "EBVshrink(%):":   [9.0057E+00, 1.5538E+01, 4.7502E+01, 6.4241E+01]
-                    },
+                minimization_successful=True,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                significant_digits=nan,
+                function_evaluations=nan,
+                warning=False,
+                ofv_with_constant=None,
+                ebv_shrinkage=pd.DataFrame(
+                    data={"EBVshrink(%):": [9.0057e00, 1.5538e01, 4.7502e01, 6.4241e01]},
                 ),
-                eps_shrinkage = pd.DataFrame(
-                    data={
-                        "EPSshrink(%):":   [1.3572E+01]
-                    },
+                eps_shrinkage=pd.DataFrame(
+                    data={"EPSshrink(%):": [1.3572e01]},
                 ),
-                eta_shrinkage = pd.DataFrame(
-                    data={
-                        "ETAshrink(%):":   [9.0067E+00, 1.5526E+01, 4.7506E+01, 1.2182E+01]
-                    },
+                eta_shrinkage=pd.DataFrame(
+                    data={"ETAshrink(%):": [9.0067e00, 1.5526e01, 4.7506e01, 1.2182e01]},
                 ),
             ),
             False,
@@ -367,23 +391,32 @@ def test_data_io(pheno_lst):
             'example6b_V7_30_beta.lst',
             1,
             rf.TermInfo(
-                minimization_successful = True,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = False,
-                significant_digits = nan,
-                function_evaluations = nan,
-                warning = False,
-                ofv_with_constant = None,
-                ebv_shrinkage = None,
-                eps_shrinkage = pd.DataFrame(
+                minimization_successful=True,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=False,
+                significant_digits=nan,
+                function_evaluations=nan,
+                warning=False,
+                ofv_with_constant=None,
+                ebv_shrinkage=None,
+                eps_shrinkage=pd.DataFrame(
                     data={
-                        "EPSshrink(%):":  [1.5539E+01, 6.8462E+00],
+                        "EPSshrink(%):": [1.5539e01, 6.8462e00],
                     },
                 ),
-                eta_shrinkage = pd.DataFrame(
+                eta_shrinkage=pd.DataFrame(
                     data={
-                        "ETAshrink(%):": [6.3623E-01, 4.5490E+00, 9.5378E+00, 2.1243E+00, 1.5371E+00, 6.0355E+00, 4.0732E-01, 1.7659E+00],
+                        "ETAshrink(%):": [
+                            6.3623e-01,
+                            4.5490e00,
+                            9.5378e00,
+                            2.1243e00,
+                            1.5371e00,
+                            6.0355e00,
+                            4.0732e-01,
+                            1.7659e00,
+                        ],
                     },
                 ),
             ),
@@ -393,30 +426,30 @@ def test_data_io(pheno_lst):
             'maxeval3.lst',
             1,
             rf.TermInfo(
-                minimization_successful = False,
-                estimate_near_boundary = False,
-                rounding_errors = False,
-                maxevals_exceeded = True,
-                significant_digits = nan,
-                function_evaluations = 5,
-                warning = False,
-                ofv_with_constant = 3376.151276351326,
-                ebv_shrinkage = pd.DataFrame(
+                minimization_successful=False,
+                estimate_near_boundary=False,
+                rounding_errors=False,
+                maxevals_exceeded=True,
+                significant_digits=nan,
+                function_evaluations=5,
+                warning=False,
+                ofv_with_constant=3376.151276351326,
+                ebv_shrinkage=pd.DataFrame(
                     data={
-                        "EBVSHRINKSD(%)":  [8.0993E+00, 1.8003E+00],
-                        "EBVSHRINKVR(%)":  [1.5543E+01, 3.5683E+00],
+                        "EBVSHRINKSD(%)": [8.0993e00, 1.8003e00],
+                        "EBVSHRINKVR(%)": [1.5543e01, 3.5683e00],
                     },
                 ),
-                eps_shrinkage = pd.DataFrame(
+                eps_shrinkage=pd.DataFrame(
                     data={
-                        "EPSSHRINKSD(%)":  [1.0000E-10],
-                        "EPSSHRINKVR(%)":  [1.0000E-10],
+                        "EPSSHRINKSD(%)": [1.0000e-10],
+                        "EPSSHRINKVR(%)": [1.0000e-10],
                     },
                 ),
-                eta_shrinkage = pd.DataFrame(
+                eta_shrinkage=pd.DataFrame(
                     data={
-                        "ETASHRINKSD(%)": [1.0000E-10, 1.4424E+01],
-                        "ETASHRINKVR(%)": [1.0000E-10, 2.6768E+01],
+                        "ETASHRINKSD(%)": [1.0000e-10, 1.4424e01],
+                        "ETASHRINKVR(%)": [1.0000e-10, 2.6768e01],
                     },
                 ),
             ),
@@ -448,15 +481,11 @@ def test_estimation_status(testdata, file, table_number, expected, covariance_st
                 rounding_errors=False,
                 maxevals_exceeded=False,
                 warning=False,
-                eps_shrinkage = pd.DataFrame(
-                    data={
-                        "EPSshrink(%):":   [-7.7375E+01]
-                    },
+                eps_shrinkage=pd.DataFrame(
+                    data={"EPSshrink(%):": [-7.7375e01]},
                 ),
-                eta_shrinkage = pd.DataFrame(
-                    data={
-                        "ETAshrink(%):":  [4.7323E+01, 3.9939E+01, 2.4474E+01, 0.0000E+00]
-                    },
+                eta_shrinkage=pd.DataFrame(
+                    data={"ETAshrink(%):": [4.7323e01, 3.9939e01, 2.4474e01, 0.0000e00]},
                 ),
             ),
             True,
@@ -470,15 +499,20 @@ def test_estimation_status(testdata, file, table_number, expected, covariance_st
                 rounding_errors=False,
                 maxevals_exceeded=False,
                 warning=False,
-                eps_shrinkage = pd.DataFrame(
-                    data={
-                        "EPSshrink(%):":   [1.1964E+01]
-                    },
+                eps_shrinkage=pd.DataFrame(
+                    data={"EPSshrink(%):": [1.1964e01]},
                 ),
-                eta_shrinkage = pd.DataFrame(
+                eta_shrinkage=pd.DataFrame(
                     data={
-                        "ETAshrink(%):":  [1.1115E+01, 1.0764E+01, -1.9903E-01, -4.3835E-02, -9.1709E-02, -1.9494E-02]
-                  },
+                        "ETAshrink(%):": [
+                            1.1115e01,
+                            1.0764e01,
+                            -1.9903e-01,
+                            -4.3835e-02,
+                            -9.1709e-02,
+                            -1.9494e-02,
+                        ]
+                    },
                 ),
             ),
             True,
@@ -488,10 +522,7 @@ def test_estimation_status(testdata, file, table_number, expected, covariance_st
 def test_estimation_status_multest(testdata, file, table_number, expected, covariance_step_ok):
     p = Path(testdata / 'nonmem' / 'modelfit_results' / 'onePROB' / 'multEST' / 'noSIM')
     rfile = rf.NONMEMResultsFile(p / file)
-    _assert_estimation_status(
-        rfile.estimation_status(table_number),
-        expected
-    )
+    _assert_estimation_status(rfile.estimation_status(table_number), expected)
     assert rfile.covariance_status(table_number).covariance_step_ok == covariance_step_ok
 
 
@@ -557,21 +588,21 @@ def test_ofv_table_gap(testdata):
             function_evaluations=16,
             warning=False,
             eta_shrinkage=pd.DataFrame(
-                data = {
-                    'ETAshrink(%):': [1.7703,  12.038,  8.5112],
+                data={
+                    'ETAshrink(%):': [1.7703, 12.038, 8.5112],
                 },
             ),
             ebv_shrinkage=pd.DataFrame(
-                data = {
+                data={
                     'EBVshrink(%):': [1.1841, 9.9088, 9.0686],
                 },
             ),
             eps_shrinkage=pd.DataFrame(
-                data = {
+                data={
                     'EPSshrink(%):': [10.166],
                 },
             ),
-        )
+        ),
     )
 
     table_numbers = (1, 2, 3, 4, 6, 8, 10, 11, 12, 13)
